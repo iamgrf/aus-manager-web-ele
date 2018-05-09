@@ -22,7 +22,8 @@
             </el-form>
         </div>
 
-        <el-table :data="table.data" style="width: 100%; height: 500px; overflow-y: auto" v-loading="table.loading" size="mini" border stripe>
+        <el-table :data="table.data" style="width: 100%; height: 500px; overflow-y: auto" v-loading="table.loading" element-loading-text="别急，数据在跑..."
+                  element-loading-spinner="el-icon-loading" size="mini" border stripe>
             <el-table-column prop="account" label="帐号"></el-table-column>
             <el-table-column prop="realName" label="真实姓名"></el-table-column>
             <el-table-column prop="createDate" label="录入时间"></el-table-column>
@@ -138,6 +139,9 @@
                 this.listUserFun();
             },
             listUserFun: function(){
+
+                this.table.loading = true;
+
                 let data = {
                     account: this.table.query.account,
                     startDate: util.ymd(this.table.query.date == null ? "" : this.table.query.date[0]),

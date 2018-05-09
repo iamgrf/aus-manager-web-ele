@@ -25,7 +25,7 @@ const routers = [
         path: '/',
         component: Home,
         menuName: '用户管理',
-        icon: 'el-icon-goods',
+        icon: 'el-icon-service',
         show: true,
         children: [
             {path: '/userList', component: UserList, menuName: '用户列表', show: true},
@@ -34,7 +34,7 @@ const routers = [
         path: '/',
         component: Home,
         menuName: '角色管理',
-        icon: 'el-icon-goods',
+        icon: 'el-icon-news',
         show: true,
         children: [
             {path: '/roleList', component: RoleList, menuName: '角色列表', show: true},
@@ -43,7 +43,7 @@ const routers = [
         path: '/',
         component: Home,
         menuName: '菜单管理',
-        icon: 'el-icon-goods',
+        icon: 'el-icon-tickets',
         show: true,
         children: [
             {path: '/menuList', component: MenuList, menuName: '菜单列表', show: true},

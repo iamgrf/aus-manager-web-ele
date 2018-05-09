@@ -3,7 +3,8 @@
     <div>
         <el-button type="primary" @click="openAddMenuDialogFun({id: -1})">添加菜单</el-button>
         <hr>
-        <el-tree default-expand-all :expand-on-click-node="false" :data="tree.data" :props="tree.props">
+        <el-tree default-expand-all :expand-on-click-node="false" :data="tree.data" :props="tree.props" v-loading="tree.loading" element-loading-text="别急，数据在跑..."
+                 element-loading-spinner="el-icon-loading">
             <span class="custom-tree-node" slot-scope="{ node, data }">
             <span>{{ node.label }}</span>
             <span>
@@ -27,7 +28,6 @@
                 <el-button type="primary" @click="addMenuFun">确 定</el-button>
             </span>
         </el-dialog>
-
     </div>
 
 </template>
@@ -43,6 +43,7 @@
         data(){
             return {
                 tree: {
+                    loading: false,
                     data:[],
                     props:{
                         children: 'children',
@@ -61,8 +62,10 @@
         },
         methods:{
             cascadeMenuFun: function(){
+                this.tree.loading = true;
                 http.post(this, urls.cascadeMenu, {}, function(result){
                     this.tree.data = result.data;
+                    this.tree.loading = false;
                 }.bind(this))
             },
             openAddMenuDialogFun: function(v){

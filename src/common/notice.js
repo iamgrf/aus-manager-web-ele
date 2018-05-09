@@ -27,4 +27,16 @@ export default {
         });
     },
 
+    openLoad: function(self){
+        return self.$loading({
+            lock: true,
+            text: '别急，数据在跑...',
+            spinner: 'el-icon-loading',
+        });
+    },
+
+    closeLoad: function(self){
+        self.close();
+    }
+
 }

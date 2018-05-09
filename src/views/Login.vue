@@ -20,6 +20,7 @@
 
     import http from '../common/http'
     import md5 from '../common/md5'
+    import notice from "~/common/notice";
 
     export default {
         data() {
@@ -30,6 +31,9 @@
         },
         methods: {
             loginFun:function() {
+
+                let load = notice.openLoad(this);
+
                 let data = {account: this.username, password: md5.hex_md5(this.password)};
                 http.post(this, '/user/login', data, function(result){
 
@@ -72,6 +76,9 @@
                     sessionStorage.setItem('token', result.data.token);
                     sessionStorage.setItem('realName', result.data.realName);
                     this.$router.push('/home');
+                    notice.closeLoad(load);
+                }.bind(this), function () {
+                    notice.closeLoad(load);
                 }.bind(this))
             },
             contains: function(arr, obj) {
