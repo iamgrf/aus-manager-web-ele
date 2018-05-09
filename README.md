@@ -1,7 +1,7 @@
 介绍下这个项目，此项目包含的功能有页面授权，接口鉴权。不会侵入你的项目，项目间的交互通过restful接口。
 在线效果
-http://65.49.134.110:8023/#/
+<a href='http://65.49.134.110:8023/#/' target='_blank'>http://65.49.134.110:8023/#/</a>
 
-npm run install
-npm run dev
+npm run install<br>
+npm run dev<br>
 npm run build
