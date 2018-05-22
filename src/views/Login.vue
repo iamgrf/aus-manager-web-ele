@@ -12,7 +12,7 @@
             </el-input>
             <br>
             <br>
-            <el-button type="primary" @click="loginFun" style="width: 100%">登录</el-button>
+            <el-button type="primary" @click="loginFun" style="width: 100%" :icon="loginBut.icon" :disabled="loginBut.disabled">登录</el-button>
         </div>
     </div>
 </template>
@@ -20,19 +20,23 @@
 
     import http from '../common/http'
     import md5 from '../common/md5'
-    import notice from "~/common/notice";
 
     export default {
         data() {
             return {
                 username: 'admin',
                 password: '123456',
+                loginBut:{
+                    icon: '',
+                    disabled: false
+                }
             };
         },
         methods: {
             loginFun:function() {
 
-                let load = notice.openLoad(this);
+                this.loginBut.icon = 'el-icon-loading';
+                this.loginBut.disabled = true;
 
                 let data = {account: this.username, password: md5.hex_md5(this.password)};
                 http.post(this, '/user/login', data, function(result){
@@ -76,9 +80,11 @@
                     sessionStorage.setItem('token', result.data.token);
                     sessionStorage.setItem('realName', result.data.realName);
                     this.$router.push('/home');
-                    notice.closeLoad(load);
+                    this.loginBut.icon = '';
+                    this.loginBut.disabled = false;
                 }.bind(this), function () {
-                    notice.closeLoad(load);
+                    this.loginBut.icon = '';
+                    this.loginBut.disabled = false;
                 }.bind(this))
             },
             contains: function(arr, obj) {

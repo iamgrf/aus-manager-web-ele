@@ -9,7 +9,7 @@
             </el-form>
         </div>
 
-        <el-table :data="table.data" style="width: 100%; height: 500px; overflow-y: auto" v-loading="table.loading" element-loading-text="别急，数据在跑..."
+        <el-table :data="table.data" style="width: 100%; height: 500px; overflow-y: auto" v-loading="table.loading" element-loading-text="拉取数据中..."
                   element-loading-spinner="el-icon-loading" size="mini" border stripe>
             <el-table-column prop="roleName" label="角色名"></el-table-column>
             <el-table-column prop="code" label="编码"></el-table-column>
@@ -204,11 +204,8 @@
 </script>
 
 <style>
-    .tool{
-        background-color: #fff;
-        border: 1px solid #d1dbe5;
-        border-radius: 5px;
-        padding: 8px;
+    .has-gutter > tr > th{
+        background-color: #F3F3F3;
     }
     .tool > .el-form > .el-form-item{
         padding: 0px;

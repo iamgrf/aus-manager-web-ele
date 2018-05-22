@@ -30,7 +30,7 @@ export default {
     openLoad: function(self){
         return self.$loading({
             lock: true,
-            text: '别急，数据在跑...',
+            text: '拉取数据中...',
             spinner: 'el-icon-loading',
         });
     },

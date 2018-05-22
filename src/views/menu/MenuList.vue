@@ -2,8 +2,8 @@
 
     <div>
         <el-button type="primary" @click="openAddMenuDialogFun({id: -1})">添加菜单</el-button>
-        <hr>
-        <el-tree default-expand-all :expand-on-click-node="false" :data="tree.data" :props="tree.props" v-loading="tree.loading" element-loading-text="别急，数据在跑..."
+        <div style="border-bottom: 1px solid #d1dbe5; margin-top: 3px;"></div>
+        <el-tree default-expand-all :expand-on-click-node="false" :data="tree.data" :props="tree.props" v-loading="tree.loading" element-loading-text="拉取数据中..."
                  element-loading-spinner="el-icon-loading">
             <span class="custom-tree-node" slot-scope="{ node, data }">
             <span>{{ node.label }}</span>
@@ -102,7 +102,6 @@
 </script>
 
 <style>
-
     .custom-tree-node {
         flex: 1;
         display: flex;
