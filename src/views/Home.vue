@@ -1,7 +1,8 @@
 <template>
     <div style="height: 100%">
         <el-container style="height: 100%;">
-            <el-header>
+            <!--上部分-->
+            <el-header style="background-color: rgb(58, 64, 77)">
                 <div style="text-align: right; float: left">
                     <label style="font-size: 30px; color: white">XXX系统</label>
                 </div>
@@ -18,9 +19,7 @@
             </el-header>
             <el-container style="height: 100%">
                 <el-aside width="200px" style="height: 100%">
-
-                    <el-menu class="el-menu-vertical-demo">
-
+                    <el-menu :default-active="active" class="el-menu-vertical-demo" unique-opened="true" background-color="#495060" text-color="#fff" @select="menuSelectFun">
                         <el-submenu :index="index+''" v-for="(item,index) in $router.options.routes" v-if="item.show">
                             <template slot="title">
                                 <i :class="item.icon"></i>
@@ -28,9 +27,7 @@
                             </template>
                             <el-menu-item v-for="(item1, index1) in item.children" :index="item1.path" v-if="item1.show" @click="jumpPageFun">{{item1.menuName}}</el-menu-item>
                         </el-submenu>
-
                     </el-menu>
-
                 </el-aside>
                 <el-main>
                     <router-view></router-view>
@@ -61,6 +58,7 @@
     export default {
         data() {
             return {
+                active: "",
                 realName: "",
                 user:{
                     update:{
@@ -87,18 +85,33 @@
                     this.$router.push('/');
                 }
             },
+            /**
+             * 跳转页面
+             */
             jumpPageFun: function(v){
                 this.$router.push(v.index);
             },
+            /**
+             * 修改密码
+             */
             updatePasswordFun: function(){
                 if (this.user.update.newPassword != this.user.update.againNewPassword){
 
                 }
+            },
+            /**
+             * 刷新后自己动展开菜单
+             * @param a
+             * @param b
+             */
+            menuSelectFun: function (index, b) {
+                sessionStorage.setItem("active", index);
             }
+
         },
         mounted: function(){
-            let realName = sessionStorage.getItem("realName");
-            this.realName = realName;
+            this.active = sessionStorage.getItem("active");
+            this.realName = sessionStorage.getItem("realName");
         }
     }
 </script>

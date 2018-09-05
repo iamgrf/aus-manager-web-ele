@@ -3,8 +3,8 @@ import qs from 'qs';
 import util from './util';
 import notice from './notice';
 
-var host = "http://65.49.134.110:8023";
-// var host = "http://192.168.1.197:8023";
+// var host = "http://65.49.134.110:8023";
+var host = "http://192.168.1.10:8023";
 
 axios.defaults.withCredentials = true;
 
